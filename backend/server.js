@@ -1,15 +1,9 @@
 const express = require('express');
 const app = express();
-const port =5000;
+const mongoose =require('mongoose');
+const conncetor = require('./db');
 
-app.get('/',(req,res)=>{
-
-    res.send("hello world");
-
-
-})
+// const mongodb =require("../backend/db")
 
 
-app.listen(port , ()=>{
-    console.log(`app is listerning on port ${port}`);
-})
+conncetor();
