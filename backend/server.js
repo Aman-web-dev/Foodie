@@ -3,7 +3,10 @@ const app = express();
 const mongoose =require('mongoose');
 const conncetor = require('./db');
 
-// const mongodb =require("../backend/db")
-
-
+const userRouter =require('./UserRouter/Routes')
 conncetor();
+
+
+
+
+app.use(userRouter);

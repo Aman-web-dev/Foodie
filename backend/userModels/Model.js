@@ -1,33 +1,56 @@
-const mongoose= require("mongoose");
-
+const  mongoose  = require("mongoose");
 
 const userDataSchema= new mongoose.Schema(
 
     {
-        userName:{
+        CategoryName:{
             type:String,
             unique:true,
             require:true
         },
 
-        email:{
+        name:{
             type:String,
             unique:true,
             require:true,
         },
 
-        password:{
+        img:{
            type:String,
            unique:false,
            require:true,
+        },
+
+        options:[
+             
+            {
+                half:{
+                    type:Number,
+                    unique:false,
+                    require:true
+                },
+
+                full:{
+                    type:Number,
+                    unique:false,
+                    require:true
+                }
+
+            }
+
+        ],
+
+        discriptions:{
+            type:String,
+            unique:true,
+            require: true
         }
     },
     {timestamps:true},
 )
 
-userDataSchema.index({ userName: 1 });
 
 
 const userData= mongoose.model("userData",userDataSchema);
 
-module.exports=userData;    
+module.exports=userData;
