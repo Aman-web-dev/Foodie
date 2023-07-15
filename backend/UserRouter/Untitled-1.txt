@@ -1,0 +1,6 @@
+{
+  "name": "aman",
+  "location": "delhi",
+  "email": "amanzhx1234@gmail.com",
+  "password": "dskbdsvbsds"
+}

@@ -51,13 +51,13 @@ if(count+e>2){
 
     </div>
     <div className="carousel-item active"style={{ "height": '70vh' }}>
-      <img src={`https://source.unsplash.com/random/300×300?food`} className="d-block w-100 vh-70" alt="..." />
+      <img src={`https://source.unsplash.com/random/300×300?burger`} className="d-block w-100 vh-70" alt="..." />
     </div>
     <div className="carousel-item" style={{ "height": '70vh' }}>
-      <img src={`https://source.unsplash.com/random/300×300?indianfood`} className="d-block w-100 vh-70" alt="..." />
+      <img src={`https://source.unsplash.com/random/300×300?fries`} className="d-block w-100 vh-70" alt="..." />
     </div>
     <div className="carousel-item" style={{ "height": '70vh' }}>
-      <img src={`https://source.unsplash.com/random/300×300?mexicanfood`} className="d-block w-100 vh-70" alt="..." />
+      <img src={`https://source.unsplash.com/random/300×300?soup`} className="d-block w-100 vh-70" alt="..." />
     </div>
 
 

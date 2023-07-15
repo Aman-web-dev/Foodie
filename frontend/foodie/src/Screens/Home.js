@@ -24,15 +24,6 @@ const arr=["pizza","burger","steak","noodles","salad","taco","pie","hot dog","be
       </div>
  </div>
 
-
-
-
-
-
-
-
-
-
  </>
   )
 }

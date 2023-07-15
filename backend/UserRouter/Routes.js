@@ -1,29 +1,46 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
-const User= require('../userModels/Model')
+const User= require('../userModels/User')
 
 const router = express.Router();
 
 
+router.get('/',(req,res)=>{
 
 
-  //api to get or read data from database.
-  router.get('/',async(req,res)=>{
-   
-    try{
+  res.send("hello Home page ")
+})
+
+router.get('/c',(req,res)=>{
+
+
+  res.send("hello c page ")
+})
+
+router.get('/about',(req,res)=>{
+
+
+  res.send("hello about page ")
+})
+
   
-        const showAll= await User.find();
-        console.log(showAll) 
-       return res.status(201).json(showAll)
-        
-    }catch (error){
-    console.log(error)
-  return res.send(500).json({error:error.message})
+
+router.post('/about',async (req,res)=>{
+
+  const {name,location,email,password}=req.body;
+  try{
+    const newUser=User.create({
+      name:name,
+      location:location,
+      email:email,
+      password:password
+    })
+     return res.status(201).json(newUser)
+  }catch(error){
+  console.log(error).json(error)
   }
-  
-  res.send('api is running on port')
-  })
-  
+
+})
 
 module.exports=router;
