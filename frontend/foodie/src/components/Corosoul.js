@@ -41,7 +41,7 @@ if(count+e>2){
 <div id="carouselExampleSlidesOnly" className="carousel slide vh-70" data-bs-ride="carousel">
   <div className="carousel-inner vh-70 h-70">
 
-    <div className="carousel-caption" style={{"z-index":"1"}}>
+    <div className="carousel-caption" style={{"zIndex":"1"}}> 
 
 
     <form className="d-flex" role="search">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-function SignIn() {
+function SignUp() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,12 +36,19 @@ function SignIn() {
       headers: {
         "Content-Type": "application/json",
       },
+
     });
 
+    const result = await response.json()
+console.log('this is the error ',result)
+setError(response.msg)
 
-    if (!response.ok) {
-      const result = await response.json();
-      const errorMessage = result.error || "An error occurred.";
+
+    if (!result.ok) {
+      // const result = await response.json();
+      const errorMessage = result.errors || "An error occurred.";
+
+      console.log('this is error of the error ', errorMessage)
       setError(errorMessage);
       console.log('this is error', errorMessage);
 
@@ -52,7 +59,6 @@ function SignIn() {
     setEmail("");
     setPassword("");
     setName("");
-    
     setAddress("");
     setAddress2("");
     setPinCode("");
@@ -71,9 +77,9 @@ function SignIn() {
   return (
     <>
 
-  {error && (<div  className="alert d-absolute vh-10 vw-80 alert-danger" role="error">{error}</div>)}
+  {error && (<div  className="alert d-absolute vh-10 vw-80 alert-danger" role="alert">{error}</div>)}
 
-<form className="row g-3 container my-auto mx-auto border" onSubmit={handleSubmit}>
+<form className="row g-3 container my-5 mx-auto border rounded " onSubmit={handleSubmit}>
 
 
 <div className="col-12">
@@ -85,19 +91,19 @@ function SignIn() {
     <input type="email" className="form-control" value={email} onChange={(e)=>setEmail(e.target.value)}/>
   </div>
   <div className="col-md-6">
-    <label for="inputPassword4" className="form-label">Password</label>
+    <label htmlFor="inputPassword4" className="form-label">Password</label>
     <input type="password" className="form-control" value={password} onChange={(e)=>setPassword(e.target.value)}/>
   </div>
 
 
   <div className="col-12">
-    <label for="inputAddress" className="form-label">Address</label>
+    <label htmlFor="inputAddress" className="form-label">Address</label>
     <input type="text" className="form-control" value={address}  name="addressLine1" onChange={(e)=>setAddress(e.target.value)}/>
   </div>
 
 
   <div className="col-12">
-    <label for="inputAddress2" className="form-label">Address 2</label>
+    <label htmlFor="inputAddress2" className="form-label">Address 2</label>
     <input type="text" className="form-control"value={address2}  name="addressLine2" onChange={(e)=>setAddress2(e.target.value)} />
   </div>
 
@@ -107,7 +113,7 @@ function SignIn() {
 
 
   <div className="col-md-6">
-    <label for="inputCity" className="form-label">City</label>
+    <label htmlFor="inputCity" className="form-label">City</label>
     <input type="text" className="form-control" value={city}  name="city" onChange={(e)=>setCity(e.target.value)}/>
   </div> 
 
@@ -130,8 +136,8 @@ function SignIn() {
 
 
   <div className="col-md-2">
-    <label for="inputZip" className="form-label">Pin Code</label>
-    <input type="text" className="form-control" value={pinCode} name="pinCode" onChange={(e)=>setPinCode(e.target.value)}/>
+    <label className="form-label">Pin Code</label>
+    <input type="number" className="form-control" maxLength={6} value={pinCode} name="pinCode" onChange={(e)=>setPinCode(e.target.value)}  />
   </div>
 
 
@@ -140,7 +146,7 @@ function SignIn() {
     <div className="form-check">
       <input className="form-check-input" type="checkbox"  required/>
       <label className="form-check-label" >
-      I agress to All the Term and Conditions Given By Foodie.
+      I agree to All the Terms and Conditions Given By Foodie.  
       </label>
     </div>
   </div> 
@@ -157,4 +163,4 @@ function SignIn() {
 }
 
 
-export default SignIn;
+export default SignUp;

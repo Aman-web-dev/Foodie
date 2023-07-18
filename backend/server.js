@@ -5,10 +5,14 @@ const conncetor = require('./db');
 const config = require('./config')
 
 
+
+
+
+
 const PORT = config.APP_PORT;
 
 app.use(express.json());
-const cors=require("cors");
+const cors=require("cors"); 
 app.use(cors())
 
 const userRouter =require('./UserRouter/Routes')
