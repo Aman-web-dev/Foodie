@@ -26,7 +26,7 @@ function Navbar() {
        <button type="button"  className="btn mx-2 btn-primary">
     <Link className="" to="/login"style={{ "textDecoration": "none", "color": "inherit" }}>Log-In</Link></button>
        <button type="button"  className="btn mx-2 btn-success">
-    <Link className="" to="/signin"style={{ "textDecoration": "none", "color": "inherit" }}>Sign-In</Link>
+    <Link className="" to="/signup"style={{ "textDecoration": "none", "color": "inherit" }}>Sign-Up</Link>
         </button>
 
         
