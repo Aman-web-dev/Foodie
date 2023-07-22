@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
 const conncetor = require('./db');
 const config = require('./config')
 
@@ -20,7 +19,7 @@ const userRouter = require('./UserRouter/Routes')
 
 app.use(userRouter);
 
-
+ 
 
 
 app.listen(PORT, (err) => {

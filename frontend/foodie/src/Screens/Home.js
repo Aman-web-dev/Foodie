@@ -1,11 +1,44 @@
 import React, { useEffect, useState } from 'react'
-import Card from '../components/Card';
+import  Card  from '../components/Card';
 import Corosoul from '../components/Corosoul';
 
 
 export default function Home() {
 
-const arr=["pizza","burger","steak","noodles","salad","taco","pie","hot dog","beer"]
+const [info,setInfo]=useState([])
+const [loading, setLoading] = useState(true);
+
+  const   fetchData = async() =>{
+     
+  
+await fetch('http://localhost:5000/api/loaddata')
+.then((response) => response.json())
+.then((result) => {
+
+
+
+  setInfo(result[0]);
+  console.log(info)
+
+  setLoading(false);
+})
+.catch((error) => {
+
+  console.error('Error fetching data:', error);
+  setLoading(false); 
+});
+
+  } 
+
+
+
+ useEffect(()=>{
+fetchData()
+
+
+},[])
+
+
 
 
 
@@ -16,11 +49,18 @@ const arr=["pizza","burger","steak","noodles","salad","taco","pie","hot dog","be
     
 <div className="container">
       <div className="row">
- {arr.map((elem)=>(
-         <div className="col-md-4 my-3">
- <Card name={elem} image={`https://source.unsplash.com/random/300×300/?${elem}`}/>
-                </div>
- ))}
+      {loading ? (
+            <p>Loading...</p>
+          ) : info.length > 0 ? (
+            
+
+            info.map((elem) => <div className="col-md-4 mb-3" key={elem._id}>
+            <Card  key={elem._id} image={elem.img} name={elem.name} category={elem.CategoryName} description={elem.description} options={elem.options[0]} />
+          </div> )
+          ) : (
+            <p>No data available.</p>
+          )}
+   
       </div>
  </div>
 

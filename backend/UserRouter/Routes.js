@@ -9,11 +9,7 @@ const jwt = require('jsonwebtoken');
 
 const secret = 'sangeetakifuddilenihaimujhe'
 
-router.get('/', (req, res) => {
 
-
-  res.send("hello Home page ")
-})
 
 
 router.post('/create', [
@@ -52,10 +48,6 @@ router.post('/create', [
 
   })
 
-
-
-
-
 router.post('/login', [
 
   body('email', 'invalidEmail').isEmail(),
@@ -81,7 +73,7 @@ router.post('/login', [
         return res.status(500).json({ errors: "NOT FOUND (try another Email)" })
       }
 
-      const isMatch = bcrypt.compareSync(req.body.password,userData.password);
+      const isMatch = bcrypt.compareSync(req.body.password, userData.password);
 
 
 
@@ -96,19 +88,19 @@ router.post('/login', [
       const data = {
 
 
-        user:{
-          id:userData.id,
-          name:userData.name,
-          email:userData.email
+        user: {
+          id: userData.id,
+          name: userData.name,
+          email: userData.email
         }
       }
 
 
-      const authToken = jwt.sign(data,secret)
+      const authToken = jwt.sign(data, secret)
 
 
 
-      return res.status(201).json({success:true,authToken:authToken})
+      return res.status(201).json({ success: true, authToken: authToken })
 
     }
 
@@ -123,6 +115,40 @@ router.post('/login', [
 
 
   })
+
+
+
+router.get('/', async (req, res) => {
+
+  const response = await User.find()
+
+  return res.status(201).json(response)
+
+
+
+})
+
+router.get("/api/loaddata", async (req, res) => {
+
+
+  try {
+
+    const data = await global.foodItems
+
+    console.log(data)
+    res.send([data])
+
+  }
+  catch (error) {
+
+    console.error(error)
+    res.send('server Error')
+  }
+
+
+})
+
+
 
 
 module.exports = router;
