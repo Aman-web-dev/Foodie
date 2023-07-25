@@ -18,7 +18,7 @@ function Login() {
     e.preventDefault()
     const data = { email: email, password: password }
 
-    const response = await fetch("http://localhost:5000/login", {
+    const response = await fetch("http://localhost:5000/api/login", {
 
       method: 'POST',
       body: JSON.stringify(data),

@@ -8,13 +8,13 @@ export default function Home() {
 const [info,setInfo]=useState([])
 const [loading, setLoading] = useState(true);
 
+
   const   fetchData = async() =>{
      
   
 await fetch('http://localhost:5000/api/loaddata')
-.then((response) => response.json())
+.then((response) => response.json())  
 .then((result) => {
-
 
 
   setInfo(result[0]);
@@ -52,10 +52,8 @@ fetchData()
       {loading ? (
             <p>Loading...</p>
           ) : info.length > 0 ? (
-            
-
             info.map((elem) => <div className="col-md-4 mb-3" key={elem._id}>
-            <Card  key={elem._id} image={elem.img} name={elem.name} category={elem.CategoryName} description={elem.description} options={elem.options[0]} />
+            <Card  key={elem._id} image={elem.img} name={elem.name} category={elem.CategoryName} description={elem.description} options={elem.options[0]}  />
           </div> )
           ) : (
             <p>No data available.</p>

@@ -17,7 +17,6 @@ const connector = async () => {
     const fetched= await mongoose.connection.db.collection('foodItems').find({}).toArray()
     // console.log('This is fetched data',fetched)
     global.foodItems=fetched
-    console.log(global.foodItems)
   
   }catch(error){
      console.log(error)

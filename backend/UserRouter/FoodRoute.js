@@ -1,26 +1,30 @@
-const express = require('express');
+
+const express = require("express");
+const app = express();
+app.use(express.json());
+const router = express.Router();
 
 
 
-const router = express.Router()
+router.get("/loaddata", async (req, res) => {
 
 
-router.post('/load',async(req,res)=>{
+  try {
 
-try{
+    const data = await global.foodItems
 
-    console.log(global.foodItems)
-      res.send([global.foodItems])
+    res.send([data])
 
-}
-catch(error){
+  }
+  catch (error) {
 
-console.error(error)
-res.send('server Error')
-}
+    console.error(error)
+    res.send('server Error')
+  }
 
 
 })
 
 
-module.exports =router; 
+
+module.exports=router;

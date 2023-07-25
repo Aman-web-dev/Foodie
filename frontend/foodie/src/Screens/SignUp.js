@@ -30,7 +30,7 @@ function SignUp() {
       return;
     }
 
-    const response = await fetch("http://localhost:5000/create", {
+    const response = await fetch("http://localhost:5000/api/create", {
       method: "POST",
       body: JSON.stringify(addUser),
       headers: {

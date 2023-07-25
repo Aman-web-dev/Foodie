@@ -1,7 +1,29 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+
+
 function Navbar() {
+
+  const location = useLocation();
+  const currentPage = location.pathname;
+  console.log(currentPage)
+  const [button, setButton] = useState('Log-In')
+  const [order, setOrder] = useState('')
+
+  const navbarLogic = () => {
+
+    if (currentPage == '/') {
+      setButton('')
+    }
+  }
+
+
+
+  useEffect(() => { }, [])
   return (
+
+
     <>
 
       <nav className="navbar navbar-light navbar-expand-lg bg-body-tertiary" >
@@ -16,26 +38,52 @@ function Navbar() {
                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/orders">Orders</Link>
+                <Link className="nav-link" to="/orders">{order}</Link>
               </li>
-
-
             </ul>
-            <form className="d-flex" role="search">
-
-              <button type="button" className="btn mx-2 btn-primary">
-                <Link className="" to="/login" style={{ "textDecoration": "none", "color": "inherit" }}>Log-In</Link></button>
-              <button type="button" className="btn mx-2 btn-success">
-                <Link className="" to="/signup" style={{ "textDecoration": "none", "color": "inherit" }}>Sign-Up</Link>
-              </button>
+       
 
 
-            </form>
+              {(localStorage.getItem('authToken')) ?
+
+                <form className="d-flex" role="search">
+
+                  <button type="button" className="btn mx-2 btn-primary">
+                    <Link className="" onClick={()=>(localStorage.removeItem('authToken'))} style={{ "textDecoration": "none", "color": "inherit" }}>Log-Out</Link>
+                  </button>
+
+                  <button type="button" className="btn mx-2 btn-success">
+                    <Link className="" to="/cart" style={{ "textDecoration": "none", "color": "inherit" }}><span class="material-symbols-outlined">
+shopping_cart
+</span></Link>
+                  </button>
+
+                </form>
+
+
+
+                :
+
+                <form className="d-flex" role="search">
+
+                  <button type="button" className="btn mx-2 btn-primary">
+                    <Link className="" to="/login" style={{ "textDecoration": "none", "color": "inherit" }}>Log-In</Link>
+                  </button>
+
+                  <button type="button" className="btn mx-2 btn-success">
+                    <Link className="" to="/signup" style={{ "textDecoration": "none", "color": "inherit" }}>Sign-Up</Link>
+                  </button>
+
+                </form>
+
+              }
+
+
+
           </div>
         </div>
       </nav>
     </>
-
   )
 }
 
