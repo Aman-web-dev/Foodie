@@ -53,7 +53,7 @@ function Navbar() {
                   </button>
 
                   <button type="button" className="btn mx-2 btn-success">
-                    <Link className="" to="/cart" style={{ "textDecoration": "none", "color": "inherit" }}><span class="material-symbols-outlined">
+                    <Link className="" to="/cart" style={{ "textDecoration": "none", "color": "inherit" }}><span className="material-symbols-outlined">
 shopping_cart
 </span></Link>
                   </button>

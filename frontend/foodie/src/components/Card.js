@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 function Card(props) {
 
 
+
   const { options } = props;
   const [quantity, setQuantity] = useState(1)
   const [size, setSize] = useState(Object.keys(options)[0])
@@ -16,10 +17,40 @@ function Card(props) {
 
 
 
-
-const addToCart=async(id)=>{
-  
+const addToCart=async(e)=>{
+const id=await props.id
 setCartButton("Adding To Cart ...")
+console.log("quantity is this ji",quantity)
+const userid=890;
+
+const cart={userid:userid, cart:[{foodid:id,quantity:quantity,price:price}]}
+console.log(cart)
+
+const cartAdd= fetch("http://localhost:5000/api/cart",{
+
+method:"POST",
+body: JSON.stringify(cart),
+headers: {
+  "Content-Type": "application/json",
+},
+
+
+})
+if(cartAdd.ok){
+console.log("Done")
+
+}
+
+if(!cartAdd.ok){
+  console.log("issue Adding to cart")
+  
+  }
+
+
+
+console.log(id)
+console.log(props.name);
+console.log(props.description);
 setBtnDisabled(true); 
 setTimeout(()=>{setCartButton("Added to Cart");},2000)    
 }
@@ -66,7 +97,7 @@ setTimeout(()=>{setCartButton("Added to Cart");},2000)
   return (
     <div key={props.key} className="my-3" >
       <div className="card my-card" style={cardStyle}>
-        <img src={props.image} style={{ "width": "20rem", "height": "15rem" }} className="card-img-top m-2" alt="..." />
+        <img src={props.image} style={{ "width": "20rem", "height": "15rem" }} className="card-img-top m-2" alt={props.id} />
         <div className="card-body" style={{ "width": "20rem", "height": "8rem" }}>
           <h5 className="card-title">{props.name}</h5>
           <p className="card-text">{props.description}</p>
@@ -83,7 +114,7 @@ setTimeout(()=>{setCartButton("Added to Cart");},2000)
                 </option>
               ))}
             </select>}
-            <select id="inputState" className="form-select my-2" value={quantity} onChange={handleQuantityChange}>
+            <select id={props.id} className="form-select my-2" value={quantity} onChange={handleQuantityChange}>
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
@@ -97,13 +128,13 @@ setTimeout(()=>{setCartButton("Added to Cart");},2000)
 
         </ul>
         <div className="card-body d-flex align-items-center justify-content-center">
-  <button type="button" className="btn  btn-primary mx-1 d-flex align-items-center justify-content-center">
-    <Link to="#" className="card-link" style={{ "textDecoration": "none", "color": "inherit" }}>Buy Now</Link>
-  </button>
-
-  <button type="button" disabled={btnDisaable} className="btn btn-primary  mx-1 d-flex align-items-center justify-content-center" onClick={addToCart}>
-    <Link to="#" className="card-link"  onClick={props.addToCart} style={{ "textDecoration": "none", "color": "inherit" }}>{cartButton}</Link>
-  </button>
+          <button type="button" className="btn  btn-primary mx-1 d-flex align-items-center justify-content-center">
+            <Link to="#" className="card-link" style={{ "textDecoration": "none", "color": "inherit" }}>Buy Now</Link>
+          </button>
+        
+          <button type="button"  disabled={btnDisaable} className="btn btn-primary  mx-1 d-flex align-items-center justify-content-center" onClick={addToCart}>
+            <Link to="#" className="card-link"  onClick={props.addToCart} style={{ "textDecoration": "none", "color": "inherit" }}>{cartButton}</Link>
+          </button>
 </div>
 
       </div>

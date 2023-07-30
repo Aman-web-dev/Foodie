@@ -10,18 +10,40 @@ const cartSchema = new Schema(
 
     {
     
-        id:{
+        userid:{
     
             type:String,
             required:true,
-            unique:true,
-        },
-        
-        price:{
-            type:String,
-            required:true,
             unique:false,
+        },
+
+
+        cart:[
+
+            {
+
+            foodid:{
+             type:String,
+             required:true,
+             unique:false,
+            },
+
+
+            quantity:{
+                type:String,
+                required:true,
+                unique:false,
+            },
+            
+            price:{
+                type:String,
+                required:true,
+                unique:false,
+            }
         }
+        ]
+
+      
     
     }
     

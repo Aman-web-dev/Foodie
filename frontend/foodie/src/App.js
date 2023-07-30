@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './Screens/Home'
+import Cart from './Screens/Cart';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from './Screens/SignUp';
 import '../node_modules/bootstrap-dark-5/dist/css/bootstrap-dark.min.css';
@@ -19,7 +20,7 @@ function App() {
          <Route exact path="/" element={<Home/>}/>
          <Route exact path="/signup" element={<SignUp/>}/> 
          <Route exact path="/login" element={<Login />}/>
-         <Route exact path="/" element={<Home />}/>
+         <Route exact path="/cart" element={<Cart/>}/>
          <Route exact path="/" element={<Home />}/>
     </Routes>
   </BrowserRouter>

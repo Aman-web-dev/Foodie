@@ -8,7 +8,7 @@ const User = require('../userModels/User');
 
 const router = express.Router(); // Create a new Router instance
 
-router.use(express.json()); // Middleware specific to this router
+app.use(express.json());
 
 
 

@@ -2,23 +2,23 @@
 import React, { useEffect } from 'react';
 import Card from '../components/Card';
 
+
 function Cart() {
 const dataLoad=()=>{
-
-
 const data = fetch();
 
 
-}
-useEffect(()=>{
-    dataLoad;
 
-},[])
+}
+// useEffect(()=>{
+//     dataLoad;
+
+// },[])
     
   return (
     <div>
       
-    </div>
+          </div>
   )
 }
 
