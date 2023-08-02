@@ -49,7 +49,7 @@ function Navbar() {
                 <form className="d-flex" role="search">
 
                   <button type="button" className="btn mx-2 btn-primary">
-                    <Link className="" onClick={()=>(localStorage.removeItem('authToken'))} style={{ "textDecoration": "none", "color": "inherit" }}>Log-Out</Link>
+                    <Link className="" onClick={()=>{localStorage.removeItem('authToken');localStorage.removeItem('useremail')}} style={{ "textDecoration": "none", "color": "inherit" }}>Log-Out</Link>
                   </button>
 
                   <button type="button" className="btn mx-2 btn-success">

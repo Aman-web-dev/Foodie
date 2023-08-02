@@ -5,7 +5,7 @@ const User = require('../userModels/User')
 const { body, validationResult } = require('express-validator')
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-
+const foodCart = require('../userModels/Cart')
 
 
 
@@ -37,6 +37,17 @@ router.post('/create', [
           password: secPass
         })
         console.log(newUser);
+        console.log("creating new Cart....")
+        const newCart = foodCart.create({
+         userid: req.body.email,
+        useremail:req.body.email,
+        cart:{
+          foodid:req.body.location,
+          quantity:secPass,
+          price:req.body.name
+        }
+        })
+        console.log("Cart Created Successfully")
         return res.status(201).json(newUser)
       } catch (error) {
         res.send(error)
@@ -44,7 +55,7 @@ router.post('/create', [
         console.log(error).json(error)
       }
   
-    })
-  
+    })  
+    
 
     module.exports=router;

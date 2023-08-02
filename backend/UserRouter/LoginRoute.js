@@ -60,26 +60,13 @@ router.post('/login', [
           }
         }
   
-  
         const authToken = jwt.sign(data, secret)
-  
-  
-  
-        return res.status(201).json({ success: true, authToken: authToken })
-  
+        return res.status(201).json({ success: true, authToken: authToken,useremail:req.body })
       }
-  
-  
-  
       catch (error) {
         res.send(userData)
         console.log(error)
         return res.status(500).json(error)
       }
-  
-  
-  
     })
-  
-
     module.exports=router;

@@ -10,14 +10,12 @@ const cartSchema = new Schema(
 
     {
     
-        userid:{
+        useremail:{
     
             type:String,
             required:true,
-            unique:false,
+            unique:true,
         },
-
-
         cart:[
 
             {
@@ -27,8 +25,6 @@ const cartSchema = new Schema(
              required:true,
              unique:false,
             },
-
-
             quantity:{
                 type:String,
                 required:true,
@@ -42,14 +38,10 @@ const cartSchema = new Schema(
             }
         }
         ]
-
-      
-    
     }
-    
     )
     
-    const Cart = mongoose.model('Cart',cartSchema);
+    const foodCart = mongoose.model('foodCart',cartSchema);
     
     
-    module.exports =Cart;
+    module.exports =foodCart;   

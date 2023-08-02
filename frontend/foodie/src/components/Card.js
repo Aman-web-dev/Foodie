@@ -1,11 +1,10 @@
 import { set } from 'mongoose';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext  } from 'react'
 import { Link } from 'react-router-dom';
 
 
 
-function Card(props) {
-
+function Card(props){
 
 
   const { options } = props;
@@ -17,45 +16,51 @@ function Card(props) {
 
 
 
-const addToCart=async(e)=>{
-const id=await props.id
-setCartButton("Adding To Cart ...")
-console.log("quantity is this ji",quantity)
-const userid=890;
-
-const cart={userid:userid, cart:[{foodid:id,quantity:quantity,price:price}]}
-console.log(cart)
-
-const cartAdd= fetch("http://localhost:5000/api/cart",{
-
-method:"POST",
-body: JSON.stringify(cart),
-headers: {
-  "Content-Type": "application/json",
-},
+  const addToCart = async (e) => {
 
 
-})
-if(cartAdd.ok){
-console.log("Done")
+    console.log("userEmail heree ",localStorage.getItem('useremail'))
 
-}
+    setCartButton("Adding To Cart ...");
+    const email = localStorage.getItem("useremail")
+    const id = props.id;
+    const cart ={
+      useremail: email,
+      cart: [
+        {
+          foodid: id,
+          quantity: quantity,
+          price: price,
+        }
+      ],
+    };
 
-if(!cartAdd.ok){
-  console.log("issue Adding to cart")
+      
   
-  }
-
-
-
-console.log(id)
-console.log(props.name);
-console.log(props.description);
-setBtnDisabled(true); 
-setTimeout(()=>{setCartButton("Added to Cart");},2000)    
-}
+    try {
+      const response = await fetch("http://localhost:5000/api/cart", {
+        method: "PATCH",
+        body: JSON.stringify({useremail:email,cart:{
+          foodid: id,
+          quantity: quantity,
+          price: price,
+        }}),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
   
-
+      if (!response.ok) {
+        throw new Error("Failed to add item to cart.");
+      }
+  
+      setBtnDisabled(true);
+      setCartButton("Added to Cart");
+    } catch (error) {
+      console.error("Error while adding item to cart:", error);
+    }
+  };
+  
 
 
 
@@ -75,7 +80,7 @@ setTimeout(()=>{setCartButton("Added to Cart");},2000)
 
   
   useEffect(() => {
-    calculatePrice(size, quantity);
+calculatePrice(size, quantity);
   }, [size, quantity]);
 
 
@@ -93,9 +98,21 @@ setTimeout(()=>{setCartButton("Added to Cart");},2000)
     console.log("quantity", quantity)
   }
 
+  
+  useEffect(() => {
+
+if(localStorage.getItem('authToken')&&localStorage.getItem('useremail')){
+  setCartButton("Add To Cart")
+}
+else{
+  setCartButton("Login First");
+  setBtnDisabled(true);
+}
+  })
 
   return (
     <div key={props.key} className="my-3" >
+       
       <div className="card my-card" style={cardStyle}>
         <img src={props.image} style={{ "width": "20rem", "height": "15rem" }} className="card-img-top m-2" alt={props.id} />
         <div className="card-body" style={{ "width": "20rem", "height": "8rem" }}>

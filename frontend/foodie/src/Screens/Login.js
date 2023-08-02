@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
+import AppContext from "../components/Context"
 
 function Login() {
   const navigate = useNavigate();
@@ -40,28 +40,24 @@ function Login() {
 
       const result = await response.json();
       console.log('result', result)
+      localStorage.setItem("useremail",email)      
       setEmail('');
       setPassword('')
       localStorage.setItem("authToken",result.authToken);
       console.log("auth token heree ",localStorage.getItem('authToken'))
       navigate('/')
     }
-
-
   }
 
 
   return (
+    
+  <AppContext.Provider value={email}>
 
-    <>
+
       {error && (<div className="alert d-absolute vh-10 vw-80 alert-danger" role="alert">{error}</div>)}
-
-
-
       <div>
         <form className="row g-3 container my-5 mx-auto border rounded" >
-
-
 
           <div className="col-md-6">
             <label className="form-label">Email</label>
@@ -79,8 +75,9 @@ function Login() {
         </form>
 
       </div>
+      </AppContext.Provider>
 
-    </>
+
 
   )
 }
